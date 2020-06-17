@@ -1,17 +1,3 @@
-/* 
-  Once you complete a problem, refresh ./classes.html in your browser and check to see if the problem's test(s) are passing.
-  Passed tests will be indicated by a green circle.
-  Failed tests will be indicated by a red X.
-
-  You can refresh the page at any time to re-run all the tests.
-
-  Classes are a tool for building similar objects over and over again.
-  They are a construct that helps your organize your code.
-
-  Let's work with some employees at a company.
-  You work for Widget Co. They have hundreds of employees.
-*/
-
 ////////// PROBLEM 1 //////////
 
 /*
@@ -67,13 +53,12 @@ class Manager extends Employee{
   }
   hire = function(employee){
     this.reports.push(employee)
+    
   }
   fire = function(index){
     this.reports.splice(index,1)
   }
 }
-
-  
 
 
 ////////// PROBLEM 3 //////////
@@ -99,32 +84,33 @@ class Manager extends Employee{
 
 class ProgressiveManager extends Manager{
   constructor(first_name, last_name, email, age, reports){
-    // properties
     super(first_name, last_name, email, age, reports);
     this.title = 'Not a manager';
     this.bonus = 0;
   }
 
-  const hire = function(employee){
+  hire = function(employee){
+    // super.hire(employee);
+    this.reports.push(employee)
     if(this.reports.length===0){
-      this.title = 'Not a manager'}
+      this.title = 'Not a Manager'}
     else if(this.reports.length>=1  && this.reports.length<=3  ){
-      this.title = "Bareley Manager"}
+      this.title = "Barely Manager"}
     else if(this.reports.length>=4  && this.reports.length<=10 ){
       this.title = "Mostly Manager"}
     else if(this.reports.length>=11 && this.reports.length<=50 ){
       this.title = "Manager"}
     else if(this.reports.length>=51 && this.reports.length<=100){
-      this.title = "Bestest Manager"}
-      else if(this.reports.length>=101){
+      this.title = "Manager Plus"}
+    else{
         this.title = "Bestest Manager"}
-    }
-   const fire = function(employee){
-    // super(fire(employee));
+  }
+  
+  fire = function(index){
+    // super.fire(index)
     this.bonus += 100;
   }
 }
-
 
 
 ////////// PROBLEM 4 - Black Diamond //////////
@@ -150,4 +136,26 @@ class ProgressiveManager extends Manager{
         - The anonymous function should decrease wear_and_tear_count by 10, and set needs_reboot to false
 */
 
-//Code Here
+class Machine {
+  constructor(){
+    this.widgets_made_count = 0;
+    this.wear_and_tear_count = 0;
+    this.needs_reboot = false;
+  }
+  
+  //methods
+  makeWidgets = function(num) {
+    this.widgets_made_count +=num;
+    this.wear_and_tear_count = Math.floor(this.widgets_made_count/50)
+  }
+
+  fixMachine = function(){
+    this.needs_reboot = true;
+  }
+
+  reboot = function(){
+      this.needs_reboot = false;
+      this.wear_and_tear_count -=10;
+      return rebootComplete()
+  }
+}
