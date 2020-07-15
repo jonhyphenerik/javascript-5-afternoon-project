@@ -90,8 +90,13 @@ class ProgressiveManager extends Manager{
   }
 
   hire = function(employee){
-    // super.hire(employee);
+    // super.hire();
     this.reports.push(employee)
+    this.changeTitle()
+
+  }
+  
+  changeTitle = function(){
     if(this.reports.length===0){
       this.title = 'Not a Manager'}
     else if(this.reports.length>=1  && this.reports.length<=3  ){
@@ -105,9 +110,10 @@ class ProgressiveManager extends Manager{
     else{
         this.title = "Bestest Manager"}
   }
-  
+
   fire = function(index){
-    // super.fire(index)
+    // super.fire();
+    this.changeTitle();
     this.bonus += 100;
   }
 }
@@ -144,7 +150,7 @@ class Machine {
   }
   
   //methods
-  makeWidgets = function(num) {
+  makeWidgets = function(num){
     this.widgets_made_count +=num;
     this.wear_and_tear_count = Math.floor(this.widgets_made_count/50)
   }
@@ -154,8 +160,9 @@ class Machine {
   }
 
   reboot = function(){
+    return () =>{
+      this.wear_and_tear_count -= 10;
       this.needs_reboot = false;
-      this.wear_and_tear_count -=10;
-      return rebootComplete()
+    }
   }
-}
+} 
